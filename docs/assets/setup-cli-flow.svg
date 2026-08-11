@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="700" y2="200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#001a0f"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#00ff88"/>
+    </marker>
+  </defs>
+  <rect width="700" height="200" rx="12" fill="url(#bg)"/>
+  <text x="350" y="28" text-anchor="middle" fill="#e5fef4" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600">Sciezka B - CLI (bez Docker)</text>
+
+  <rect x="30" y="55" width="120" height="50" rx="6" fill="#0a1f14" stroke="#374151" stroke-width="1.5"/>
+  <text x="90" y="85" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="10">a.pdf</text>
+
+  <rect x="30" y="115" width="120" height="50" rx="6" fill="#0a1f14" stroke="#374151" stroke-width="1.5"/>
+  <text x="90" y="145" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="10">b.pdf</text>
+
+  <path d="M160 105 H220" stroke="#00ff88" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="230" y="75" width="200" height="70" rx="8" fill="#14532d" stroke="#00ff88" stroke-width="1.5"/>
+  <text x="330" y="105" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="10">python merge.py</text>
+  <text x="330" y="125" text-anchor="middle" fill="#9ca3af" font-family="Arial, Helvetica, sans-serif" font-size="9">-o wynik.pdf</text>
+
+  <path d="M440 110 H500" stroke="#00ff88" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="510" y="75" width="160" height="70" rx="8" fill="#0a1f14" stroke="#00ff88" stroke-width="2"/>
+  <text x="590" y="110" text-anchor="middle" fill="#e5fef4" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600">wynik.pdf</text>
+  <text x="590" y="132" text-anchor="middle" fill="#6b7280" font-family="Arial, Helvetica, sans-serif" font-size="9">gotowe w 3 min</text>
+</svg>

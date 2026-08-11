@@ -29,9 +29,13 @@
 
 **90% przypadków:** Ścieżka A. Reszta to opcje na później.
 
+![Trzy sciezki instalacji Spinacza](assets/setup-paths.png)
+
 ---
 
 ## Ścieżka A — Docker (polecana)
+
+![Docker w 5 krokach](assets/setup-docker-steps.png)
 
 ### Krok 0 — Co musisz mieć
 
@@ -205,6 +209,8 @@ Powinieneś zobaczyć ciemny ekran Spinacza z napisem „Spinacz" i strefą drag
 
 ## Ścieżka B — tylko terminal / CLI
 
+![Sciezka CLI bez Dockera](assets/setup-cli-flow.png)
+
 Najszybsza opcja, jeśli nie potrzebujesz przeglądarki — np. skrypt albo jednorazowe scalenie na serwerze.
 
 ### Wymagania
@@ -298,6 +304,8 @@ Więcej szczegółów: [development.md](development.md).
 ---
 
 ## Co dokładnie robi `docker compose up`
+
+![Diagram docker compose up](assets/setup-docker-flow.png)
 
 Kiedy odpalasz Spinacza przez Docker, dzieją się trzy rzeczy naraz:
 

@@ -79,6 +79,10 @@ Na studiach kilku znajomych z grupy też z tego korzystało i sobie chwaliło �
 | [`assets/architecture.png`](assets/architecture.png) | Diagram architektury |
 | [`assets/workflow.svg`](assets/workflow.svg) | Wersja wektorowa (workflow) |
 | [`assets/architecture.svg`](assets/architecture.svg) | Wersja wektorowa (architektura) |
+| [`assets/setup-paths.png`](assets/setup-paths.png) | Wybor sciezki instalacji |
+| [`assets/setup-docker-steps.png`](assets/setup-docker-steps.png) | Docker w 5 krokach |
+| [`assets/setup-docker-flow.png`](assets/setup-docker-flow.png) | Co robi docker compose up |
+| [`assets/setup-cli-flow.png`](assets/setup-cli-flow.png) | Sciezka CLI bez Dockera |
 
 ---
 
