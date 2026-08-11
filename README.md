@@ -31,7 +31,7 @@ Otwórz **[http://localhost:8080](http://localhost:8080)** → dodaj pliki → u
 
 ## Jak to wygląda
 
-![Przepływ pracy w Spinaczu](docs/assets/workflow.svg)
+![Przepływ pracy w Spinaczu](docs/assets/workflow.png)
 
 1. **Dodaj** pliki PDF (drag & drop lub kliknięcie)
 2. **Ułóż** kolejność na liście po prawej
@@ -43,7 +43,7 @@ Otwórz **[http://localhost:8080](http://localhost:8080)** → dodaj pliki → u
 
 ## Architektura w skrócie
 
-![Diagram architektury Spinacza](docs/assets/architecture.svg)
+![Diagram architektury Spinacza](docs/assets/architecture.png)
 
 Dwa kontenery Docker: **React + Nginx** (front) i **Flask + pypdf** (backend).  
 Wspólna logika scalania w `backend/core.py` — używana przez Web UI, API i CLI.

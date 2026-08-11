@@ -6,7 +6,7 @@ Spinacz to monolit podzielony na dwa kontenery Docker: frontend (React + Nginx) 
 
 ## Diagram wysokiego poziomu
 
-![Diagram architektury](assets/architecture.svg)
+![Diagram architektury](assets/architecture.png)
 
 ```mermaid
 flowchart LR

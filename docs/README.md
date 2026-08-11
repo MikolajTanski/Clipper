@@ -74,8 +74,10 @@ Na studiach kilku znajomych z grupy też z tego korzystało i sobie chwaliło �
 | Plik | Opis |
 |------|------|
 | [`assets/hero-banner.png`](assets/hero-banner.png) | Baner produktu (README) |
-| [`assets/workflow.svg`](assets/workflow.svg) | Przepływ pracy w Web UI |
-| [`assets/architecture.svg`](assets/architecture.svg) | Diagram architektury |
+| [`assets/workflow.png`](assets/workflow.png) | Przepływ pracy w Web UI |
+| [`assets/architecture.png`](assets/architecture.png) | Diagram architektury |
+| [`assets/workflow.svg`](assets/workflow.svg) | Wersja wektorowa (workflow) |
+| [`assets/architecture.svg`](assets/architecture.svg) | Wersja wektorowa (architektura) |
 
 ---
 

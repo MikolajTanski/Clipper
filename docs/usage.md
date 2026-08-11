@@ -16,7 +16,7 @@ Otwórz [http://localhost:8080](http://localhost:8080).
 
 ### Krok po kroku
 
-![Przepływ pracy](assets/workflow.svg)
+![Przepływ pracy](assets/workflow.png)
 
 1. **Dodaj pliki** — przeciągnij PDF-y na strefę drop lub kliknij, żeby wybrać z dysku
 2. **Ułóż kolejność** — przeciągnij pozycje na liście „Kolejność plików"
