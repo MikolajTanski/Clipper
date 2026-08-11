@@ -1,51 +1,84 @@
-## Spinacz – prosty łącznik PDF
+# Spinacz — dokumentacja
 
-**Spinacz** to małe narzędzie do lokalnego łączenia plików PDF:
-- **Zero AI, zero zewnętrznych API** – wszystko działa lokalnie.
-- **CLI** do szybkiej pracy z terminala.
-- Nowoczesny **Web UI (Flask + React + Nginx)** z drag & drop.
+> **Spinacz** powstał, bo na studiach irytowało mnie łączenie PDF-ów przed oddaniem prac — szukanie narzędzi online, limity, reklamy, wysyłanie cudzych dokumentów na serwer.  
+> Zrobiłem coś prostego, lokalnego i darmowego. **Macie to, korzystajcie jak chcecie.**
 
-### Funkcje
+---
 
-- **Backend / CLI (Python)**:
-  - Komenda:
-    - `python backend/merge.py plik1.pdf plik2.pdf plik3.pdf -o wynik.pdf`
-  - Łączenie PDF-ów w podanej kolejności.
-  - Opcje:
-    - zakresy stron (`--pages "1-3,5,7-"`),
-    - pusta strona między plikami (`--blank-between`).
+## Spis treści
 
-- **API HTTP (Flask)**:
-  - Endpoint `POST /api/merge`:
-    - przyjmuje pliki jako `multipart/form-data` (`files`),
-    - opcja: `blank_between`,
-    - zwraca scalony PDF `spinacz.pdf`.
+Wybierz sekcję — każda to osobna „zakładka” dokumentacji:
 
-- **Web UI (React + Nginx)**:
-  - Ciemny, czarno-zielony motyw inspirowany spinaczem.
-  - Drag & drop PDF-ów, lista plików z możliwością zmiany kolejności.
-  - Podgląd „zszytego” dokumentu po lewej.
-  - Przycisk „Scal PDF”, wynik pobierany bezpośrednio z przeglądarki.
+| | Sekcja | Co znajdziesz |
+|---|--------|---------------|
+| 🏗 | [**Architektura**](architecture.md) | Warstwy systemu, przepływ danych, Docker, diagramy Mermaid |
+| 📖 | [**Użycie i przykłady**](usage.md) | Web UI krok po kroku, CLI, API HTTP z przykładami |
+| 🛠 | [**Rozwój lokalny**](development.md) | Dev bez Dockera, struktura katalogów, debugowanie |
 
-### Stack technologiczny
+---
 
-- **Backend**:
-  - Python
-  - pypdf
-  - CLI (Typer)
-  - API HTTP (Flask)
-- **Frontend**:
-  - React + Vite
-  - Nginx (serwowanie frontu + proxy `/api` do backendu)
-
-### Uruchomienie (Docker Compose)
-
-W katalogu głównym projektu:
+## Szybki start (Docker)
 
 ```bash
-docker compose up --build
+# w katalogu głównym repozytorium
+docker compose up --build -d
 ```
 
-- Frontend: `http://localhost:8080`
-- Backend (API): `http://localhost:5000/api/merge` (za Nginxem dostępne jako `/api/merge` z frontu).
+| Usługa | URL |
+|--------|-----|
+| **Aplikacja (Web UI)** | [http://localhost:8080](http://localhost:8080) |
+| **API (bezpośrednio)** | `POST http://localhost:5050/api/merge` |
+| **API (przez Nginx)** | `POST http://localhost:8080/api/merge` |
 
+Zatrzymanie:
+
+```bash
+docker compose down
+```
+
+---
+
+## Czym jest Spinacz?
+
+**Spinacz** (ang. *paper clip*) to lokalny łącznik plików PDF. Nie dzieli PDF-ów — **scala** je w jeden dokument w wybranej kolejności.
+
+### Trzy sposoby użycia
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Web UI    │     │  HTTP API   │     │     CLI     │
+│  przegląd.  │     │   skrypty   │     │  terminal   │
+└──────┬──────┘     └──────┬──────┘     └──────┬──────┘
+       │                   │                   │
+       └───────────────────┼───────────────────┘
+                           ▼
+                  ┌─────────────────┐
+                  │  core.merge_pdfs │
+                  │     (pypdf)      │
+                  └─────────────────┘
+```
+
+### Zasady projektu
+
+- **Lokalnie** — pliki przetwarzane na Twojej maszynie
+- **Prosto** — jeden endpoint API, jedna funkcja scalania
+- **Bez magii** — zero AI, zero zewnętrznych API, zero kont użytkownika
+- **Otwarte** — używaj, modyfikuj, rozwijaj
+
+Na studiach kilku znajomych z grupy też z tego korzystało i sobie chwaliło — mimo że daleko od idealu. Ważne było to, że **rozwiązywało problem biznesowy**: jeden PDF zamiast pięciu, bez szukania kolejnego narzędzia online.
+
+---
+
+## Grafiki
+
+| Plik | Opis |
+|------|------|
+| [`assets/hero-banner.png`](assets/hero-banner.png) | Baner produktu (README) |
+| [`assets/workflow.svg`](assets/workflow.svg) | Przepływ pracy w Web UI |
+| [`assets/architecture.svg`](assets/architecture.svg) | Diagram architektury |
+
+---
+
+## Powrót
+
+← [README główne](../README.md)

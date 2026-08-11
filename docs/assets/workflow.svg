@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" fill="none">
+  <defs>
+    <linearGradient id="wf-bg" x1="0" y1="0" x2="900" y2="200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#001a0f"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="200" rx="12" fill="url(#wf-bg)"/>
+
+  <!-- Step 1 -->
+  <circle cx="90" cy="100" r="36" fill="#0a1f14" stroke="#00ff88" stroke-width="2"/>
+  <text x="90" y="96" text-anchor="middle" fill="#00ff88" font-family="system-ui,sans-serif" font-size="22">1</text>
+  <text x="90" y="160" text-anchor="middle" fill="#e5fef4" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Dodaj PDF-y</text>
+  <text x="90" y="178" text-anchor="middle" fill="#6b7280" font-family="system-ui,sans-serif" font-size="10">drag &amp; drop</text>
+
+  <path d="M130 100 H170" stroke="#00ff88" stroke-width="2" opacity="0.6"/>
+
+  <!-- Step 2 -->
+  <circle cx="230" cy="100" r="36" fill="#0a1f14" stroke="#00ff88" stroke-width="2"/>
+  <text x="230" y="96" text-anchor="middle" fill="#00ff88" font-family="system-ui,sans-serif" font-size="22">2</text>
+  <text x="230" y="160" text-anchor="middle" fill="#e5fef4" font-family="system-ui,sans-serif" font-size="12" font-weight="600">UBó| kolejno[</text>
+  <text x="230" y="178" text-anchor="middle" fill="#6b7280" font-family="system-ui,sans-serif" font-size="10">przecignij na li[cie</text>
+
+  <path d="M270 100 H310" stroke="#00ff88" stroke-width="2" opacity="0.6"/>
+
+  <!-- Step 3 -->
+  <circle cx="370" cy="100" r="36" fill="#0a1f14" stroke="#00ff88" stroke-width="2"/>
+  <text x="370" y="96" text-anchor="middle" fill="#00ff88" font-family="system-ui,sans-serif" font-size="22">3</text>
+  <text x="370" y="160" text-anchor="middle" fill="#e5fef4" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Podgld</text>
+  <text x="370" y="178" text-anchor="middle" fill="#6b7280" font-family="system-ui,sans-serif" font-size="10">miniatury stron</text>
+
+  <path d="M410 100 H450" stroke="#00ff88" stroke-width="2" opacity="0.6"/>
+
+  <!-- Step 4 -->
+  <circle cx="510" cy="100" r="36" fill="#0a1f14" stroke="#00ff88" stroke-width="2"/>
+  <text x="510" y="96" text-anchor="middle" fill="#00ff88" font-family="system-ui,sans-serif" font-size="22">4</text>
+  <text x="510" y="160" text-anchor="middle" fill="#e5fef4" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Opcje</text>
+  <text x="510" y="178" text-anchor="middle" fill="#6b7280" font-family="system-ui,sans-serif" font-size="10">pusta strona?</text>
+
+  <path d="M550 100 H590" stroke="#00ff88" stroke-width="2" opacity="0.6"/>
+
+  <!-- Step 5 -->
+  <circle cx="650" cy="100" r="36" fill="#14532d" stroke="#00ff88" stroke-width="2"/>
+  <text x="650" y="96" text-anchor="middle" fill="#e5fef4" font-family="system-ui,sans-serif" font-size="22">5</text>
+  <text x="650" y="160" text-anchor="middle" fill="#e5fef4" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Scal PDF</text>
+  <text x="650" y="178" text-anchor="middle" fill="#6b7280" font-family="system-ui,sans-serif" font-size="10">pobierz wynik</text>
+
+  <path d="M690 100 H730" stroke="#00ff88" stroke-width="2" opacity="0.6"/>
+
+  <!-- Result -->
+  <rect x="760" y="72" width="100" height="56" rx="6" fill="#0a1f14" stroke="#00ff88" stroke-width="1.5"/>
+  <text x="810" y="96" text-anchor="middle" fill="#00ff88" font-family="system-ui,sans-serif" font-size="11" font-weight="600">.pdf</text>
+  <text x="810" y="114" text-anchor="middle" fill="#9ca3af" font-family="system-ui,sans-serif" font-size="9">spinacz.pdf</text>
+  <text x="810" y="160" text-anchor="middle" fill="#e5fef4" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Gotowe</text>
+</svg>

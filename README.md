@@ -1,62 +1,85 @@
-# Spinacz – PDF merger
+# Spinacz
 
-A small **local** tool to merge PDF files. No AI, no external APIs – everything runs on your machine.
+![Spinacz — lokalny łącznik PDF](docs/assets/hero-banner.png)
 
-- **Web UI**: Dark green/black theme, drag & drop, file reorder, preview thumbnails, merge and download.
-- **Backend**: Python (pypdf, Flask), HTTP API `POST /api/merge`.
-- **Deploy**: Docker Compose (frontend on port 8080, backend on 5050).
+**Spinacz** to proste narzędzie do łączenia plików PDF — lokalnie, bez chmury, bez kont, bez AI.  
+Powstało, bo na studiach wkurzało mnie ręczne sklejanie PDF-ów przed oddaniem prac. Macie to, korzystajcie jak chcecie.
 
-## Features
+---
 
-- Merge multiple PDFs in a chosen order.
-- Optional blank page between files.
-- CLI available in the backend for terminal use.
-
-## Tech stack
-
-- **Backend**: Python 3, pypdf, Flask, Typer (CLI).
-- **Frontend**: React, Vite, pdf.js for previews, Nginx (static + proxy to API).
-
-## Run with Docker Compose
-
-From the project root:
+## Szybki start
 
 ```bash
 docker compose up --build -d
 ```
 
-- **App**: [http://localhost:8080](http://localhost:8080)
-- **API**: `POST http://localhost:5050/api/merge` (or `/api/merge` when using the app; Nginx proxies to the backend).
+Otwórz **[http://localhost:8080](http://localhost:8080)** → dodaj pliki → ułóż kolejność → **Scal PDF** → pobierz `spinacz.pdf`.
 
-## Run locally (no Docker)
+---
 
-**Backend**
+## Co potrafi
 
-```bash
-cd backend
-pip install -r requirements.txt
-python web.py
-```
+| Funkcja | Web UI | CLI | API |
+|---------|:------:|:---:|:---:|
+| Scalanie wielu PDF-ów | ✅ | ✅ | ✅ |
+| Zmiana kolejności plików | ✅ | ✅ | ✅ |
+| Podgląd miniaturek | ✅ | — | — |
+| Pusta strona między plikami | ✅ | ✅ | ✅ |
+| Wybór zakresów stron (`1-3,5,7-`) | — | ✅ | ✅ |
 
-Runs on `http://127.0.0.1:5000`. For the UI to call it, either run the frontend with a proxy or set the API base URL in the frontend.
+---
 
-**Frontend**
+## Jak to wygląda
 
-```bash
-cd frontend
-npm ci
-npm run dev
-```
+![Przepływ pracy w Spinaczu](docs/assets/workflow.svg)
 
-Runs on `http://localhost:5173`. Point the app at your backend (e.g. proxy in Vite or env).
+1. **Dodaj** pliki PDF (drag & drop lub kliknięcie)
+2. **Ułóż** kolejność na liście po prawej
+3. **Zobacz** podgląd „zszytego” dokumentu po lewej
+4. **Opcjonalnie** włącz pustą stronę między plikami
+5. **Scal** i pobierz wynik
 
-## Project layout
+---
 
-- `backend/` – Flask app, `core.py` (merge logic), CLI in `merge.py`, `web.py` (API).
-- `frontend/` – React + Vite app, Nginx config for production build.
-- `docs/` – Extra docs (e.g. plan, Polish README).
-- `docker-compose.yml` – Backend and frontend services.
+## Architektura w skrócie
 
-## License
+![Diagram architektury Spinacza](docs/assets/architecture.svg)
 
-Use as you like.
+Dwa kontenery Docker: **React + Nginx** (front) i **Flask + pypdf** (backend).  
+Wspólna logika scalania w `backend/core.py` — używana przez Web UI, API i CLI.
+
+---
+
+## Dokumentacja
+
+Pełna dokumentacja jest podzielona na sekcje — traktuj [`docs/README.md`](docs/README.md) jak spis treści / hub:
+
+| Sekcja | Opis |
+|--------|------|
+| [📚 Hub dokumentacji](docs/README.md) | Spis wszystkich zakładek |
+| [🏗 Architektura](docs/architecture.md) | Warstwy, przepływ danych, Docker, diagramy |
+| [📖 Użycie i przykłady](docs/usage.md) | Web UI, CLI, API z przykładami `curl` |
+| [🛠 Rozwój lokalny](docs/development.md) | Uruchomienie bez Dockera, struktura projektu |
+
+---
+
+## Stack
+
+- **Backend:** Python 3, Flask, pypdf, Typer (CLI)
+- **Frontend:** React 18, Vite, TypeScript, pdf.js (podgląd)
+- **Produkcja:** Nginx (statyczny front + proxy `/api`), Docker Compose
+
+---
+
+## Licencja
+
+Używajcie jak chcecie — bez ograniczeń, bez gwarancji, bez zbierania danych.  
+Pliki nigdy nie opuszczają Waszej maszyny (o ile sami nie wystawicie backendu na świat).
+
+---
+
+## Historia
+
+Spinacz nie powstał jako produkt „idealny pod każdym względem” — to narzędzie robione pod konkretną irytację: sklejanie PDF-ów przed oddaniem prac na studiach.
+
+Kilku znajomych z grupy też z niego korzystało i sobie chwaliło — mimo że daleko mu do ideału. I o to chodziło: **rozwiązywał problem biznesowy**, a nie udawał wielką platformę. Jeśli Wam też pomoże, tym lepiej.
