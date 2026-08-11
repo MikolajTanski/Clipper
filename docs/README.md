@@ -11,6 +11,7 @@ Wybierz sekcję — każda to osobna „zakładka” dokumentacji:
 
 | | Sekcja | Co znajdziesz |
 |---|--------|---------------|
+| 🚀 | [**Jak postawić (setup)**](setup.md) | Bardzo rozpisany przewodnik: Docker, CLI, dev, troubleshooting |
 | 🏗 | [**Architektura**](architecture.md) | Warstwy systemu, przepływ danych, Docker, diagramy Mermaid |
 | 📖 | [**Użycie i przykłady**](usage.md) | Web UI krok po kroku, CLI, API HTTP z przykładami |
 | 🛠 | [**Rozwój lokalny**](development.md) | Dev bez Dockera, struktura katalogów, debugowanie |

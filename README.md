@@ -15,6 +15,8 @@ docker compose up --build -d
 
 Otwórz **[http://localhost:8080](http://localhost:8080)** → dodaj pliki → ułóż kolejność → **Scal PDF** → pobierz `spinacz.pdf`.
 
+> Pierwszy raz? Pełny przewodnik krok po kroku: **[docs/setup.md](docs/setup.md)**
+
 ---
 
 ## Co potrafi
@@ -56,6 +58,7 @@ Pełna dokumentacja jest podzielona na sekcje — traktuj [`docs/README.md`](doc
 
 | Sekcja | Opis |
 |--------|------|
+| [🚀 Jak postawić (setup)](docs/setup.md) | **Start tutaj** — rozpisany proces instalacji krok po kroku |
 | [📚 Hub dokumentacji](docs/README.md) | Spis wszystkich zakładek |
 | [🏗 Architektura](docs/architecture.md) | Warstwy, przepływ danych, Docker, diagramy |
 | [📖 Użycie i przykłady](docs/usage.md) | Web UI, CLI, API z przykładami `curl` |
