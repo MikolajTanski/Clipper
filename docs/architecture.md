@@ -10,26 +10,26 @@ Spinacz to monolit podzielony na dwa kontenery Docker: frontend (React + Nginx) 
 
 ```mermaid
 flowchart LR
-    subgraph Browser["Przeglądarka"]
-        UI["React SPA<br/>drag & drop · podgląd · merge"]
+    subgraph browser [Przegladarka]
+        UI[React SPA]
     end
 
-    subgraph Frontend["Kontener frontend :8080"]
-        NGINX["Nginx<br/>statyczne pliki + proxy /api"]
+    subgraph frontend [Kontener frontend port 8080]
+        NGINX[Nginx static and proxy]
     end
 
-    subgraph Backend["Kontener backend :5050"]
-        API["Flask<br/>POST /api/merge"]
-        CORE["core.py<br/>merge_pdfs()"]
+    subgraph backend [Kontener backend port 5050]
+        API[Flask POST /api/merge]
+        CORE[core.py merge_pdfs]
     end
 
-    CLI["CLI (Typer)<br/>merge.py"]
+    CLI[CLI Typer merge.py]
 
-    UI -->|"POST multipart/form-data"| NGINX
-    NGINX -->|"proxy_pass"| API
+    UI -->|POST multipart| NGINX
+    NGINX -->|proxy_pass| API
     API --> CORE
     CLI --> CORE
-    CORE --> OUT["spinacz.pdf"]
+    CORE --> OUT[spinacz.pdf]
 ```
 
 ---
@@ -82,23 +82,23 @@ Frontend **nie** scala PDF-ów — tylko wysyła pliki do API i pobiera wynik.
 
 ```mermaid
 sequenceDiagram
-    actor U as Użytkownik
+    actor U as Uzytkownik
     participant R as React
     participant N as Nginx
     participant F as Flask
     participant C as core.py
 
-    U->>R: Dodaje PDF-y, ustawia kolejność
-    R->>R: Podgląd miniaturek (pdf.js, lokalnie)
-    U->>R: Klika „Scal PDF"
-    R->>N: POST /api/merge (FormData: files[], blank_between)
-    N->>F: proxy_pass → backend:5000
-    F->>F: Zapis plików tymczasowych
-    F->>C: merge_pdfs(paths, output, ...)
-    C->>C: PdfReader → PdfWriter → zapis
-    F-->>N: 200 application/pdf (spinacz.pdf)
+    U->>R: Dodaje pliki PDF
+    R->>R: Podglad miniaturek pdf.js
+    U->>R: Klika Scal PDF
+    R->>N: POST /api/merge
+    N->>F: proxy_pass backend:5000
+    F->>F: Zapis plikow tymczasowych
+    F->>C: merge_pdfs
+    C->>C: PdfReader i PdfWriter
+    F-->>N: 200 application/pdf
     N-->>R: PDF binary
-    R-->>U: Automatyczne pobranie pliku
+    R-->>U: Pobranie spinacz.pdf
 ```
 
 ---

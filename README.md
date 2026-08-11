@@ -1,6 +1,6 @@
 # Spinacz
 
-![Spinacz — lokalny łącznik PDF](docs/assets/hero-banner.png)
+![Spinacz - lokalny lacznik PDF](docs/assets/hero-banner.png)
 
 **Spinacz** to proste narzędzie do łączenia plików PDF — lokalnie, bez chmury, bez kont, bez AI.  
 Powstało, bo na studiach wkurzało mnie ręczne sklejanie PDF-ów przed oddaniem prac. Macie to, korzystajcie jak chcecie.
