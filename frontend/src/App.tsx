@@ -192,7 +192,8 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <div className="tab-panel" hidden={tab !== "pdf"}>
+      {tab === "pdf" && (
+      <div className="tab-panel tab-panel--enter">
         <ol className="flow-steps" aria-label="Jak scalić PDF">
           <li className={`flow-step${pdfStep >= 1 ? " flow-step--done" : ""}${pdfStep === 1 ? " flow-step--current" : ""}`}>
             <span className="flow-step-num">1</span>
@@ -311,41 +312,80 @@ const App: React.FC = () => {
         </div>
       )}
       </div>
+      )}
 
-      <div className="tab-panel" hidden={tab !== "resize"}>
-        <ImageResize />
-      </div>
+      {tab === "resize" && (
+        <div className="tab-panel tab-panel--enter">
+          <ImageResize />
+        </div>
+      )}
 
-      <div className="tab-panel" hidden={tab !== "about"}>
-        <article className="about-panel panel-sheet">
-          <h2 className="panel-title">O aplikacji</h2>
-          <p className="about-lead">
-            Spinacz działa w przeglądarce i jest hostowany na <strong>Vercel</strong> jako
-            czysty frontend — bez backendu, bez konta i bez bazy danych.
-          </p>
-          <ul className="about-list">
-            <li>
-              Scalanie PDF i zmiana rozmiaru zdjęć dzieją się <strong>w Twojej przeglądarce</strong>
-              (JavaScript), nie na naszym serwerze.
-            </li>
-            <li>
-              <strong>Nie wysyłamy i nie zapisujemy Twoich plików</strong> — Vercel serwuje tylko
-              statyczny HTML, CSS i JS. To możesz sprawdzić w kodzie i w zakładce sieci przeglądarki.
-            </li>
-            <li>
-              Kod jest otwarty: nie ma API do uploadu ani przechowywania dokumentów.
-            </li>
-          </ul>
-          <div className="about-links">
-            <a className="about-link about-link--primary" href={REPO_URL} target="_blank" rel="noreferrer">
-              Repozytorium na GitHubie
-            </a>
-            <a className="about-link" href={LIVE_URL} target="_blank" rel="noreferrer">
-              Wersja na Vercel
-            </a>
-          </div>
-        </article>
-      </div>
+      {tab === "about" && (
+        <div className="tab-panel tab-panel--enter">
+          <article className="about-stage">
+            <header className="about-hero">
+              <div className="about-hero-mark" aria-hidden="true">
+                <PaperclipIcon className="about-hero-clip" />
+              </div>
+              <div className="about-hero-copy">
+                <h2 className="about-hero-title">O aplikacji</h2>
+                <p className="about-hero-text">
+                  Spinacz na Vercel to statyczny frontend. Twoje pliki obrabia przeglądarka —
+                  my ich nie przyjmujemy i nie zapisujemy.
+                </p>
+              </div>
+            </header>
+
+            <div className="about-grid">
+              <div className="about-card about-card--1">
+                <span className="about-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <rect x="3" y="4" width="18" height="14" rx="2" />
+                    <path d="M8 20h8" strokeLinecap="round" />
+                  </svg>
+                </span>
+                <h3 className="about-card-title">W przeglądarce</h3>
+                <p className="about-card-text">
+                  Scalanie PDF i resize zdjęć to JavaScript u Ciebie — nie job na serwerze.
+                </p>
+              </div>
+              <div className="about-card about-card--2">
+                <span className="about-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" strokeLinejoin="round" />
+                    <path d="M9.5 12l1.8 1.8L15 10" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <h3 className="about-card-title">Bez zapisu plików</h3>
+                <p className="about-card-text">
+                  Vercel serwuje HTML/CSS/JS. Nie ma uploadu ani bazy na dokumenty.
+                </p>
+              </div>
+              <div className="about-card about-card--3">
+                <span className="about-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <path d="M9 19c-4.3 1.4-4.3-2.1-6-2.5" strokeLinecap="round" />
+                    <path d="M15 22v-3.9a3.4 3.4 0 0 0-1-2.6c3.2-.4 6.6-1.6 6.6-7A5.4 5.4 0 0 0 19 4.2 5 5 0 0 0 18.8 1S17.5.7 15 2.5a12 12 0 0 0-6 0C6.5.7 5.2 1 5.2 1A5 5 0 0 0 5 4.2 5.4 5.4 0 0 0 3.4 7.6c0 5.4 3.4 6.6 6.6 7a3.4 3.4 0 0 0-1 2.5V22" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <h3 className="about-card-title">Kod otwarty</h3>
+                <p className="about-card-text">
+                  Zero API do przechowywania plików — możesz to sprawdzić w repozytorium.
+                </p>
+              </div>
+            </div>
+
+            <div className="about-cta">
+              <a className="about-link about-link--primary" href={REPO_URL} target="_blank" rel="noreferrer">
+                Repozytorium na GitHubie
+              </a>
+              <a className="about-link" href={LIVE_URL} target="_blank" rel="noreferrer">
+                Wersja na Vercel
+              </a>
+            </div>
+          </article>
+        </div>
+      )}
       </div>
     </div>
   );
