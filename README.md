@@ -3,11 +3,6 @@
 </p>
 
 <p align="center">
-  <strong>PDF merge &amp; image resize in the browser.</strong><br/>
-  Hosted on Vercel as a static frontend — your files are not uploaded or stored.
-</p>
-
-<p align="center">
   <a href="https://clipper.vercel.app"><img src="https://img.shields.io/badge/Live_demo-Vercel-black?style=for-the-badge&logo=vercel" alt="Live demo" /></a>
   &nbsp;
   <a href="https://github.com/MikolajTanski/Clipper"><img src="https://img.shields.io/badge/GitHub-MikolajTanski%2FClipper-181717?style=for-the-badge&logo=github" alt="GitHub" /></a>
@@ -22,6 +17,13 @@
 </p>
 
 ---
+
+# English
+
+<p align="center">
+  <strong>PDF merge &amp; image resize in the browser.</strong><br/>
+  Hosted on Vercel as a static frontend — your files are not uploaded or stored.
+</p>
 
 ## Why this project
 
@@ -42,27 +44,6 @@ flowchart LR
 
 Nothing crosses the network except loading the app itself.
 
-### Po polsku
-
-| | |
-| --- | --- |
-| **Problem** | Szybkie scalanie PDF-ów i zmiana rozmiaru zdjęć — bez wysyłania dokumentów do API przetwarzającego pliki. |
-| **Podejście** | SPA na **Vercel**: scalanie przez **pdf-lib**, podglądy przez **pdf.js**, resize przez **Canvas** — bez backendu. |
-| **Dowód** | Hosting wyłącznie statyczny. Zakładka *O aplikacji* mówi wprost: obróbka w przeglądarce, nic nie trafia na serwer. |
-| **Dostarczenie** | Build Vite, testy jednostkowe, Docker (Nginx), `vercel.json` pod deploy SPA. |
-
-```mermaid
-flowchart LR
-  A[Twoje pliki] --> B[Przeglądarka]
-  B --> C[pdf-lib / Canvas]
-  C --> D[Pobierz wynik]
-  B -. statyczny JS/CSS .-> E[Vercel]
-```
-
-Po sieci idzie tylko załadowanie samej aplikacji — nie Twoje dokumenty.
-
----
-
 ## Features
 
 | Tool | What you get |
@@ -70,8 +51,6 @@ Po sieci idzie tylko załadowanie samej aplikacji — nie Twoje dokumenty.
 | **Scal PDF** | Drop → reorder → optional blank pages → download `spinacz.pdf` |
 | **Rozmiar zdjęć** | JPEG / PNG / WebP (GIF → PNG), aspect lock, live size estimate |
 | **O aplikacji** | Privacy note (PL) + links to demo & this repo |
-
----
 
 ## Quick start
 
@@ -94,8 +73,6 @@ docker compose up --build -d   # http://localhost:8080
 
 **Vercel** — connect this repo; root `vercel.json` builds `frontend/` and publishes `frontend/dist`.
 
----
-
 ## Stack at a glance
 
 ```
@@ -107,8 +84,6 @@ React + TypeScript + Vite
 ```
 
 Optional: Docker → Nginx static host · Vercel → production demo.
-
----
 
 ## Repo layout
 
@@ -123,8 +98,92 @@ Clipper/
     └── ...
 ```
 
----
-
 ## Privacy
 
 > **No server-side processing.** Files are not uploaded or stored. Vercel serves HTML/JS/CSS only.
+
+---
+
+# Po polsku
+
+<p align="center">
+  <strong>Scalanie PDF i zmiana rozmiaru zdjęć w przeglądarce.</strong><br/>
+  Na Vercel stoi statyczny frontend — pliki nie są uploadowane ani zapisywane.
+</p>
+
+## Dlaczego ten projekt
+
+| | |
+| --- | --- |
+| **Problem** | Szybkie scalanie PDF-ów i zmiana rozmiaru zdjęć bez wysyłania dokumentów do API, które je przetwarza. |
+| **Podejście** | SPA na **Vercel**: scalanie przez **pdf-lib**, podglądy przez **pdf.js**, resize przez **Canvas** — bez backendu. |
+| **Dowód** | Hosting wyłącznie statyczny. Zakładka *O aplikacji* mówi wprost: obróbka w przeglądarce, nic nie trafia na serwer. |
+| **Dostarczenie** | Build Vite, testy jednostkowe, Docker (Nginx), `vercel.json` pod deploy SPA. |
+
+```mermaid
+flowchart LR
+  A[Twoje pliki] --> B[Przeglądarka]
+  B --> C[pdf-lib / Canvas]
+  C --> D[Pobierz wynik]
+  B -. statyczny JS/CSS .-> E[Vercel]
+```
+
+Po sieci idzie tylko załadowanie aplikacji — nie Twoje dokumenty.
+
+## Funkcje
+
+| Narzędzie | Co dostajesz |
+| --- | --- |
+| **Scal PDF** | Upuść → uporządkuj → opcjonalne puste strony → pobierz `spinacz.pdf` |
+| **Rozmiar zdjęć** | JPEG / PNG / WebP (GIF → PNG), blokada proporcji, szacunek rozmiaru na żywo |
+| **O aplikacji** | Nota o prywatności + linki do demo i tego repo |
+
+## Szybki start
+
+```bash
+cd frontend
+npm ci
+npm run dev      # http://localhost:5173
+```
+
+```bash
+npm test
+npm run build
+```
+
+**Docker**
+
+```bash
+docker compose up --build -d   # http://localhost:8080
+```
+
+**Vercel** — podłącz to repo; rootowy `vercel.json` buduje `frontend/` i publikuje `frontend/dist`.
+
+## Stack w skrócie
+
+```
+React + TypeScript + Vite
+        │
+        ├─ pdf-lib     → scalanie PDF w pamięci
+        ├─ pdf.js      → miniatury stron
+        └─ Canvas API  → resize / eksport obrazów
+```
+
+Opcjonalnie: Docker → Nginx ze staticami · Vercel → demo produkcyjne.
+
+## Układ repo
+
+```
+Clipper/
+├── assets/spinacz-banner.png
+├── vercel.json
+├── docker-compose.yml
+└── frontend/          ← cała aplikacja
+    ├── Dockerfile
+    ├── src/
+    └── ...
+```
+
+## Prywatność
+
+> **Brak przetwarzania po stronie serwera.** Pliki nie są uploadowane ani zapisywane. Vercel serwuje tylko HTML/JS/CSS.
