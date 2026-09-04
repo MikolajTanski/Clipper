@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="220" viewBox="0 0 960 220" role="img" aria-label="Spinacz — PDF and image tool on Vercel">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e1a14"/>
+      <stop offset="55%" stop-color="#0a1210"/>
+      <stop offset="100%" stop-color="#121c17"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e0b93a"/>
+      <stop offset="100%" stop-color="#c9a227"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="220" rx="16" fill="url(#bg)"/>
+  <circle cx="820" cy="-20" r="140" fill="#c9a227" opacity="0.08"/>
+  <circle cx="100" cy="240" r="100" fill="#4a8f6a" opacity="0.12"/>
+  <g transform="translate(56 58)" fill="none" stroke="url(#brass)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 92V42c0-14 11-26 24-26s24 12 24 26v56c0 10-7.5 18-17 18s-17-8-17-18V50c0-4 3-7.5 7-7.5s7 3.5 7 7.5v42"/>
+  </g>
+  <text x="160" y="100" font-family="Syne, Segoe UI, system-ui, sans-serif" font-size="52" font-weight="800" fill="#efe8d8">Spinacz</text>
+  <text x="160" y="138" font-family="Figtree, Segoe UI, system-ui, sans-serif" font-size="20" fill="#8aa396">PDF merge · image resize · browser processing on Vercel</text>
+  <g font-family="Figtree, Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">
+    <rect x="160" y="158" rx="14" width="128" height="28" fill="#c9a227"/>
+    <text x="176" y="177" fill="#1a1405">Static frontend</text>
+    <rect x="300" y="158" rx="14" width="148" height="28" fill="rgba(74,143,106,0.25)" stroke="#4a8f6a"/>
+    <text x="316" y="177" fill="#b8c5bc">Files not stored</text>
+    <rect x="460" y="158" rx="14" width="88" height="28" fill="rgba(184,197,188,0.12)" stroke="rgba(184,197,188,0.35)"/>
+    <text x="478" y="177" fill="#b8c5bc">Vercel</text>
+  </g>
+</svg>

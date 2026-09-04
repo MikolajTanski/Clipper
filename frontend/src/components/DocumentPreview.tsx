@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
+import { PaperclipIcon } from "./PaperclipIcon";
 
 type SpinaczFile = {
   id: string;
@@ -92,8 +93,19 @@ export const DocumentPreview: React.FC<Props> = ({ files, onProgress }) => {
   if (!files.length) {
     return (
       <div className="doc-preview-empty">
+        <div className="empty-stack" aria-hidden="true">
+          <div className="empty-sheet empty-sheet--3" />
+          <div className="empty-sheet empty-sheet--2" />
+          <div className="empty-sheet empty-sheet--1">
+            <span className="empty-sheet-lines" />
+          </div>
+          <div className="empty-clip">
+            <PaperclipIcon className="empty-clip-icon" />
+          </div>
+        </div>
         <div className="doc-preview-placeholder">
-          <p>Dodaj pliki PDF, aby zobaczyć układ dokumentu.</p>
+          <p className="empty-lead">Stos jest jeszcze pusty</p>
+          <p>Upuść PDF po prawej — tu zobaczysz kartki w kolejności zszycia.</p>
         </div>
       </div>
     );

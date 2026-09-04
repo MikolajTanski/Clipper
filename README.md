@@ -1,88 +1,124 @@
-# Spinacz
+<p align="center">
+  <img src="./assets/spinacz-banner.svg" alt="Spinacz — PDF merge &amp; image resize in the browser" width="960" />
+</p>
 
-![Spinacz - lokalny lacznik PDF](docs/assets/hero-banner.png)
+<p align="center">
+  <strong>PDF merge &amp; image resize in the browser.</strong><br/>
+  Hosted on Vercel as a static frontend — your files are not uploaded or stored.
+</p>
 
-**Spinacz** to proste narzędzie do łączenia plików PDF — lokalnie, bez chmury, bez kont, bez AI.  
-Powstało, bo na studiach wkurzało mnie ręczne sklejanie PDF-ów przed oddaniem prac. Macie to, korzystajcie jak chcecie.
+<p align="center">
+  <a href="https://clipper.vercel.app"><img src="https://img.shields.io/badge/Live_demo-Vercel-black?style=for-the-badge&logo=vercel" alt="Live demo" /></a>
+  &nbsp;
+  <a href="https://github.com/MikolajTanski/Clipper"><img src="https://img.shields.io/badge/GitHub-MikolajTanski%2FClipper-181717?style=for-the-badge&logo=github" alt="GitHub" /></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/pdf--lib-merge-c9a227" alt="pdf-lib" />
+  <img src="https://img.shields.io/badge/pdf.js-preview-4a8f6a" alt="pdf.js" />
+</p>
 
 ---
 
-## Szybki start
+## Why this project (for recruiters)
 
-```bash
-docker compose up --build -d
+| | |
+| --- | --- |
+| **Problem** | Quick PDF stitch / image resize without uploading documents to a processing API. |
+| **Approach** | SPA on **Vercel**: merge with **pdf-lib**, previews with **pdf.js**, resize with **Canvas** — no backend. |
+| **Proof** | Static hosting only. Tab *O aplikacji* explains: processing in the browser, nothing saved on the server. |
+| **Ship** | Vite build, unit tests, Docker (Nginx), `vercel.json` for SPA deploy. |
+
+```mermaid
+flowchart LR
+  A[Your files] --> B[Browser]
+  B --> C[pdf-lib / Canvas]
+  C --> D[Download result]
+  B -. static JS/CSS .-> E[Vercel]
 ```
 
-Otwórz **[http://localhost:8080](http://localhost:8080)** → dodaj pliki → ułóż kolejność → **Scal PDF** → pobierz `spinacz.pdf`.
-
-> Pierwszy raz? Pełny przewodnik krok po kroku: **[docs/setup.md](docs/setup.md)**
+Nothing crosses the network except loading the app itself.
 
 ---
 
-## Co potrafi
+## Features
 
-| Funkcja | Web UI | CLI | API |
-|---------|:------:|:---:|:---:|
-| Scalanie wielu PDF-ów | ✅ | ✅ | ✅ |
-| Zmiana kolejności plików | ✅ | ✅ | ✅ |
-| Podgląd miniaturek | ✅ | — | — |
-| Pusta strona między plikami | ✅ | ✅ | ✅ |
-| Wybór zakresów stron (`1-3,5,7-`) | — | ✅ | ✅ |
+| Tool | What you get |
+| --- | --- |
+| **Scal PDF** | Drop → reorder → optional blank pages → download `spinacz.pdf` |
+| **Rozmiar zdjęć** | JPEG / PNG / WebP (GIF → PNG), aspect lock, live size estimate |
+| **O aplikacji** | Privacy note (PL) + links to demo & this repo |
 
 ---
 
-## Jak to wygląda
+## Quick start
 
-![Przepływ pracy w Spinaczu](docs/assets/workflow.png)
+```bash
+cd frontend
+npm ci
+npm run dev      # http://localhost:5173
+```
 
-1. **Dodaj** pliki PDF (drag & drop lub kliknięcie)
-2. **Ułóż** kolejność na liście po prawej
-3. **Zobacz** podgląd „zszytego” dokumentu po lewej
-4. **Opcjonalnie** włącz pustą stronę między plikami
-5. **Scal** i pobierz wynik
+```bash
+npm test
+npm run build
+```
 
----
+**Docker**
 
-## Architektura w skrócie
+```bash
+docker compose up --build -d   # http://localhost:8080
+```
 
-![Diagram architektury Spinacza](docs/assets/architecture.png)
-
-Dwa kontenery Docker: **React + Nginx** (front) i **Flask + pypdf** (backend).  
-Wspólna logika scalania w `backend/core.py` — używana przez Web UI, API i CLI.
-
----
-
-## Dokumentacja
-
-Pełna dokumentacja jest podzielona na sekcje — traktuj [`docs/README.md`](docs/README.md) jak spis treści / hub:
-
-| Sekcja | Opis |
-|--------|------|
-| [🚀 Jak postawić (setup)](docs/setup.md) | **Start tutaj** — rozpisany proces instalacji krok po kroku |
-| [📚 Hub dokumentacji](docs/README.md) | Spis wszystkich zakładek |
-| [🏗 Architektura](docs/architecture.md) | Warstwy, przepływ danych, Docker, diagramy |
-| [📖 Użycie i przykłady](docs/usage.md) | Web UI, CLI, API z przykładami `curl` |
-| [🛠 Rozwój lokalny](docs/development.md) | Uruchomienie bez Dockera, struktura projektu |
+**Vercel** — connect this repo; root `vercel.json` builds `frontend/` and publishes `frontend/dist`.
 
 ---
 
-## Stack
+## Stack at a glance
 
-- **Backend:** Python 3, Flask, pypdf, Typer (CLI)
-- **Frontend:** React 18, Vite, TypeScript, pdf.js (podgląd)
-- **Produkcja:** Nginx (statyczny front + proxy `/api`), Docker Compose
+```
+React + TypeScript + Vite
+        │
+        ├─ pdf-lib     → merge PDFs in-memory
+        ├─ pdf.js      → page thumbnails
+        └─ Canvas API  → image resize / export
+```
+
+Optional: Docker → Nginx static host · Vercel → production demo.
 
 ---
 
-## Licencja
+## Repo layout
 
-Używajcie jak chcecie — bez ograniczeń, bez gwarancji, bez zbierania danych.  
-Pliki nigdy nie opuszczają Waszej maszyny (o ile sami nie wystawicie backendu na świat).
+```
+Clipper/
+├── assets/spinacz-banner.svg
+├── vercel.json
+├── docker-compose.yml
+└── frontend/          ← the whole product
+    ├── Dockerfile
+    ├── src/
+    └── ...
+```
 
 ---
 
-## Historia
+## Privacy
 
-Spinacz nie powstał jako produkt „idealny pod każdym względem” — to narzędzie robione pod konkretną irytację: sklejanie PDF-ów przed oddaniem prac na studiach.
+> **No server-side processing.** Files are not uploaded or stored. Vercel serves HTML/JS/CSS only.
 
-Kilku znajomych z grupy też z niego korzystało i sobie chwaliło — mimo że daleko mu do ideału. I o to chodziło: **rozwiązywał problem biznesowy**, a nie udawał wielką platformę. Jeśli Wam też pomoże, tym lepiej.
+---
+
+## Po polsku
+
+**Spinacz** jest dostępny online na [Vercel](https://clipper.vercel.app) jako **statyczny frontend**. Nie ma backendu ani bazy — Twoje pliki **nie są uploadowane ani zapisywane** na serwerze; cała robota dzieje się w przeglądarce.
+
+| Link | |
+| --- | --- |
+| Aplikacja | [clipper.vercel.app](https://clipper.vercel.app) |
+| Kod | [github.com/MikolajTanski/Clipper](https://github.com/MikolajTanski/Clipper) |
+
+W UI zakładka **O aplikacji** opisuje to samo: hosting na Vercel, przetwarzanie w przeglądarce, brak zapisu plików, link do repozytorium.

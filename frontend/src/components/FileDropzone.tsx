@@ -1,24 +1,49 @@
 import React, { DragEvent, useRef, useState } from "react";
+import { PaperclipIcon } from "./PaperclipIcon";
 
-type Props = {
+export type FileDropzoneProps = {
   onFiles: (files: File[]) => void;
+  onRejected?: () => void;
+  accept?: string;
+  multiple?: boolean;
+  title?: string;
+  subtitle?: string;
+  icon?: string;
+  filter?: (file: File) => boolean;
 };
 
-export const FileDropzone: React.FC<Props> = ({ onFiles }) => {
+const defaultFilter = (file: File) =>
+  file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+
+export const FileDropzone: React.FC<FileDropzoneProps> = ({
+  onFiles,
+  onRejected,
+  accept = "application/pdf",
+  multiple = true,
+  title = "Upuść PDF-y tutaj",
+  subtitle = "albo kliknij, żeby wybrać",
+  icon,
+  filter = defaultFilter,
+}) => {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const takeFiles = (list: File[]) => {
+    const accepted = list.filter(filter);
+    if (accepted.length) {
+      onFiles(accepted);
+      return;
+    }
+    if (list.length) {
+      onRejected?.();
+    }
+  };
 
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
     setIsDragging(false);
-
-    const files = Array.from(event.dataTransfer.files || []).filter(
-      (f) => f.type === "application/pdf" || f.name.toLowerCase().endsWith(".pdf")
-    );
-    if (files.length) {
-      onFiles(files);
-    }
+    takeFiles(Array.from(event.dataTransfer.files || []));
   };
 
   const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -40,13 +65,7 @@ export const FileDropzone: React.FC<Props> = ({ onFiles }) => {
   };
 
   const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    const files = Array.from(event.target.files || []).filter(
-      (f) => f.type === "application/pdf" || f.name.toLowerCase().endsWith(".pdf")
-    );
-    if (files.length) {
-      onFiles(files);
-    }
-    // reset, żeby ponownie wybrać te same pliki
+    takeFiles(Array.from(event.target.files || []));
     event.target.value = "";
   };
 
@@ -61,17 +80,18 @@ export const FileDropzone: React.FC<Props> = ({ onFiles }) => {
       <input
         ref={inputRef}
         type="file"
-        accept="application/pdf"
-        multiple
+        accept={accept}
+        multiple={multiple}
         className="hidden-input"
         onChange={handleFileChange}
       />
       <div className="dropzone-inner">
-        <div className="dropzone-icon">📎</div>
-        <div className="dropzone-title">Przeciągnij i upuść PDFy tutaj</div>
-        <div className="dropzone-subtitle">albo kliknij, aby wybrać pliki</div>
+        <div className="dropzone-icon" aria-hidden="true">
+          {icon ? icon : <PaperclipIcon className="dropzone-clip" />}
+        </div>
+        <div className="dropzone-title">{title}</div>
+        <div className="dropzone-subtitle">{subtitle}</div>
       </div>
     </div>
   );
 };
-

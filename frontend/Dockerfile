@@ -1,3 +1,6 @@
+# Build static Spinacz (Vite) then serve with Nginx.
+# No backend — merge/resize run entirely in the browser.
+
 FROM node:20-alpine AS build
 
 WORKDIR /app
@@ -6,6 +9,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+# prebuild copies pdf.worker.min.mjs into public/ before vite build
 RUN npm run build
 
 FROM nginx:1.27-alpine AS runtime
@@ -15,5 +19,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget -qO- http://127.0.0.1/ >/dev/null || exit 1
 
+CMD ["nginx", "-g", "daemon off;"]
