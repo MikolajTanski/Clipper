@@ -23,7 +23,7 @@
 
 ---
 
-## Why this project (for recruiters)
+## Why this project
 
 | | |
 | --- | --- |
