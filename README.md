@@ -42,7 +42,7 @@ flowchart LR
 
 Nothing crosses the network except loading the app itself.
 
-### Dlaczego ten projekt (dla rekruterów)
+### Po polsku
 
 | | |
 | --- | --- |
