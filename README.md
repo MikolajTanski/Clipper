@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/spinacz-banner.svg" alt="Spinacz — PDF merge &amp; image resize in the browser" width="960" />
+  <img src="./assets/spinacz-banner.png" alt="Spinacz — PDF merge &amp; image resize in the browser" width="960" />
 </p>
 
 <p align="center">
@@ -41,6 +41,25 @@ flowchart LR
 ```
 
 Nothing crosses the network except loading the app itself.
+
+### Dlaczego ten projekt (dla rekruterów)
+
+| | |
+| --- | --- |
+| **Problem** | Szybkie scalanie PDF-ów i zmiana rozmiaru zdjęć — bez wysyłania dokumentów do API przetwarzającego pliki. |
+| **Podejście** | SPA na **Vercel**: scalanie przez **pdf-lib**, podglądy przez **pdf.js**, resize przez **Canvas** — bez backendu. |
+| **Dowód** | Hosting wyłącznie statyczny. Zakładka *O aplikacji* mówi wprost: obróbka w przeglądarce, nic nie trafia na serwer. |
+| **Dostarczenie** | Build Vite, testy jednostkowe, Docker (Nginx), `vercel.json` pod deploy SPA. |
+
+```mermaid
+flowchart LR
+  A[Twoje pliki] --> B[Przeglądarka]
+  B --> C[pdf-lib / Canvas]
+  C --> D[Pobierz wynik]
+  B -. statyczny JS/CSS .-> E[Vercel]
+```
+
+Po sieci idzie tylko załadowanie samej aplikacji — nie Twoje dokumenty.
 
 ---
 
@@ -95,7 +114,7 @@ Optional: Docker → Nginx static host · Vercel → production demo.
 
 ```
 Clipper/
-├── assets/spinacz-banner.svg
+├── assets/spinacz-banner.png
 ├── vercel.json
 ├── docker-compose.yml
 └── frontend/          ← the whole product
@@ -109,16 +128,3 @@ Clipper/
 ## Privacy
 
 > **No server-side processing.** Files are not uploaded or stored. Vercel serves HTML/JS/CSS only.
-
----
-
-## Po polsku
-
-**Spinacz** jest dostępny online na [Vercel](https://clipper.vercel.app) jako **statyczny frontend**. Nie ma backendu ani bazy — Twoje pliki **nie są uploadowane ani zapisywane** na serwerze; cała robota dzieje się w przeglądarce.
-
-| Link | |
-| --- | --- |
-| Aplikacja | [clipper.vercel.app](https://clipper.vercel.app) |
-| Kod | [github.com/MikolajTanski/Clipper](https://github.com/MikolajTanski/Clipper) |
-
-W UI zakładka **O aplikacji** opisuje to samo: hosting na Vercel, przetwarzanie w przeglądarce, brak zapisu plików, link do repozytorium.
