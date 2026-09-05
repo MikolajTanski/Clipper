@@ -135,7 +135,14 @@ export const ImageResize: React.FC = () => {
   };
 
   const updateDim = (changed: "width" | "height", raw: string) => {
+    // Allow empty while typing so the user can clear e.g. 2000 → type 800.
+    if (raw.trim() === "") {
+      if (changed === "width") setWidth(0);
+      else setHeight(0);
+      return;
+    }
     const parsed = Number(raw);
+    if (!Number.isFinite(parsed) || parsed < 0) return;
     const nextWidth = changed === "width" ? parsed : width;
     const nextHeight = changed === "height" ? parsed : height;
     const fitted = fitLockedSize({
@@ -148,6 +155,13 @@ export const ImageResize: React.FC = () => {
     });
     setWidth(fitted.width);
     setHeight(fitted.height);
+  };
+
+  const commitDim = (changed: "width" | "height") => {
+    const current = changed === "width" ? width : height;
+    if (current >= 1) return;
+    const fallback = changed === "width" ? origWidth || 1 : origHeight || 1;
+    updateDim(changed, String(fallback));
   };
 
   useEffect(() => {
@@ -281,9 +295,11 @@ export const ImageResize: React.FC = () => {
             <input
               type="number"
               min={1}
+              inputMode="numeric"
               value={width || ""}
               disabled={!file}
               onChange={(e) => updateDim("width", e.target.value)}
+              onBlur={() => commitDim("width")}
             />
           </label>
           <label className="dim-field">
@@ -291,9 +307,11 @@ export const ImageResize: React.FC = () => {
             <input
               type="number"
               min={1}
+              inputMode="numeric"
               value={height || ""}
               disabled={!file}
               onChange={(e) => updateDim("height", e.target.value)}
+              onBlur={() => commitDim("height")}
             />
           </label>
           <label className="checkbox dim-lock">
